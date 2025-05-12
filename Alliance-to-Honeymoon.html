@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alliance to Honeymoon - Luxury Wedding Planning</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#8B0000',secondary:'#D4AF37'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://readdy.ai/api/search-image?query=elegant%20South%20Indian%20wedding%20ceremony%20with%20gold%20decorations%2C%20temple%20backdrop%2C%20traditional%20attire%2C%20flower%20garlands%2C%20and%20warm%20lighting.%20The%20scene%20should%20have%20rich%20colors%20of%20maroon%2C%20gold%2C%20and%20green%20with%20a%20professional%20photography%20style.%20The%20left%20side%20should%20have%20a%20smooth%20gradient%20to%20a%20lighter%20background%20for%20text%20placement&width=1920&height=1080&seq=1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .testimonial-card {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://readdy.ai/api/search-image?query=elegant%20gold%20traditional%20South%20Indian%20wedding%20pattern%2C%20subtle%20background%20texture%20with%20intricate%20designs%2C%20mandala%20patterns%2C%20and%20ornamental%20motifs%20in%20a%20light%20gold%20color%20against%20a%20cream%20background&width=800&height=800&seq=2&orientation=squarish');
+        }
+        .footer-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://readdy.ai/api/search-image?query=elegant%20South%20Indian%20wedding%20decorations%20with%20gold%20and%20maroon%20colors%2C%20traditional%20patterns%2C%20temple%20architecture%20elements%2C%20and%20subtle%20lighting%20creating%20a%20luxurious%20ambiance.%20The%20image%20should%20have%20a%20dark%20overlay%20to%20serve%20as%20a%20footer%20background&width=1920&height=600&seq=3&orientation=landscape');
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #D4AF37;
+        }
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 1px solid #D4AF37;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #D4AF37;
+        }
+        .checkmark:after {
+            content: "";
+            display: none;
+        }
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-radio {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .custom-radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .radio-mark {
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 1px solid #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .custom-radio input:checked ~ .radio-mark {
+            background-color: #fff;
+            border: 1px solid #D4AF37;
+        }
+        .radio-mark:after {
+            content: "";
+            display: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #D4AF37;
+        }
+        .custom-radio input:checked ~ .radio-mark:after {
+            display: block;
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #D4AF37;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .range-slider {
+            width: 100%;
+            height: 5px;
+            background: #e0e0e0;
+            outline: none;
+            border-radius: 5px;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #D4AF37;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .range-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #D4AF37;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script src="script.js"></script>                                                                                  
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="text-3xl font-['Pacifico'] text-primary">Alliance to Honeymoon</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300">About</a>
+                    <a href="#services" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300">Services</a>
+                    <a href="#gallery" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300">Gallery</a>
+                    <a href="#testimonials" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300">Testimonials</a>
+                    <a href="#contact" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300">Contact</a>
+                    <a href="#contact" class="bg-primary text-white px-6 py-2 !rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap">Book Consultation</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-800 hover:text-primary focus:outline-none">
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            <i class="ri-menu-line ri-2x"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-20">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">Create Your Perfect South Indian Wedding</h1>
+                <p class="text-xl text-white mb-8">From engagement to honeymoon, we craft unforgettable celebrations that honor tradition while embracing your unique love story.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="bg-primary text-white px-8 py-3 !rounded-button hover:bg-opacity-90 transition-colors duration-300 text-center whitespace-nowrap">Book Consultation</a>
+                    <a href="#services" class="bg-white text-primary px-8 py-3 !rounded-button hover:bg-gray-100 transition-colors duration-300 text-center whitespace-nowrap">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">About Us</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <img src="https://readdy.ai/api/search-image?query=professional%20wedding%20planning%20team%2C%20diverse%20group%20of%20elegantly%20dressed%20wedding%20planners%20working%20together%20in%20a%20luxurious%20office%20setting%20with%20South%20Indian%20wedding%20decorations%2C%20mood%20boards%2C%20and%20planning%20materials%20visible.%20The%20scene%20should%20show%20both%20men%20and%20women%20of%20Indian%20descent%20in%20professional%20attire%20discussing%20wedding%20plans&width=600&height=800&seq=4&orientation=portrait" alt="About Alliance to Honeymoon" class="rounded-lg shadow-xl object-cover object-top w-full h-full">
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Crafting Timeless Celebrations Since 2010</h3>
+                    <p class="text-gray-700 mb-6">Alliance to Honeymoon is Chennai's premier wedding planning company specializing in authentic South Indian celebrations. Our team of dedicated professionals brings over 15 years of experience in creating memorable weddings that honor tradition while embracing contemporary elegance.</p>
+                    <p class="text-gray-700 mb-6">We understand that your wedding is one of life's most significant milestones. That's why we meticulously handle every detail—from venue selection and decoration to catering and photography—ensuring a seamless and stress-free experience for you and your families.</p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-3">
+                                <i class="ri-heart-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">850+</h4>
+                                <p class="text-gray-600">Weddings Planned</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-3">
+                                <i class="ri-star-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">98%</h4>
+                                <p class="text-gray-600">Client Satisfaction</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-3">
+                                <i class="ri-team-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">25+</h4>
+                                <p class="text-gray-600">Expert Team Members</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-3">
+                                <i class="ri-award-line text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">15+</h4>
+                                <p class="text-gray-600">Industry Awards</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="inline-block bg-primary text-white px-8 py-3 !rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap">Meet Our Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive wedding planning services tailored to create your perfect South Indian celebration</p>
+                <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Matrimony Service -->
+                <div id="matri" class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://cdn-uploads.huggingface.co/production/uploads/noauth/lcXFCJ9TLQUgKAw5G9PdU.webp" alt="Matrimony Services" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Matrimony</h3>
+                        <p class="text-gray-700 mb-4">Find your perfect match with our personalized matrimony services that respect your preferences and family traditions.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Profile verification</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Compatibility matching</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Family consultations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Horoscope matching</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Photography Service -->
+                <div id="photo" class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20South%20Indian%20wedding%20photography%2C%20capturing%20a%20beautiful%20moment%20during%20a%20traditional%20ceremony%20with%20the%20bride%20in%20a%20red%20and%20gold%20saree%20and%20the%20groom%20in%20traditional%20attire.%20The%20image%20should%20show%20excellent%20composition%2C%20lighting%2C%20and%20emotional%20connection%20between%20the%20couple%20during%20a%20key%20ritual&width=600&height=400&seq=5&orientation=landscape" alt="Wedding Photography" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Photography</h3>
+                        <p class="text-gray-700 mb-4">Capture every precious moment of your special day with our expert photographers who specialize in South Indian wedding traditions.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Pre-wedding photoshoots</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Candid photography</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Drone aerial coverage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Same-day edit highlights</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Videography Service -->
+                <div id="video" class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20videography%20team%20filming%20a%20South%20Indian%20wedding%20ceremony%2C%20with%20multiple%20camera%20setups%2C%20lighting%20equipment%2C%20and%20a%20drone.%20The%20scene%20should%20show%20videographers%20capturing%20an%20emotional%20moment%20during%20a%20traditional%20ritual%20with%20cinematic%20equipment&width=600&height=400&seq=6&orientation=landscape" alt="Wedding Videography" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Videography</h3>
+                        <p class="text-gray-700 mb-4">Create a cinematic masterpiece of your wedding with our award-winning videography team using state-of-the-art equipment.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">4K cinematic films</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Highlight reels</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Drone aerial footage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Live streaming services</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DJ Setup Service -->
+                <div id="djset" class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20DJ%20setup%20at%20a%20South%20Indian%20wedding%20reception%20with%20elegant%20lighting%2C%20sound%20equipment%2C%20and%20a%20DJ%20mixing%20traditional%20and%20modern%20music.%20The%20scene%20should%20show%20guests%20dancing%20on%20a%20beautifully%20lit%20dance%20floor%20with%20colorful%20lighting%20effects&width=600&height=400&seq=7&orientation=landscape" alt="DJ Setup" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">DJ Setup</h3>
+                        <p class="text-gray-700 mb-4">Keep your guests entertained with our premium sound systems and experienced DJs who blend traditional and contemporary music.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Professional sound systems</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Customized playlists</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">LED lighting effects</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Live mixing & MC services</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Decoration Service -->
+                <div id="decor" class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=elaborate%20South%20Indian%20wedding%20mandap%20decoration%20with%20rich%20fabrics%2C%20floral%20arrangements%20in%20red%20and%20gold%2C%20traditional%20brass%20lamps%2C%20banana%20trees%2C%20and%20elegant%20seating.%20The%20scene%20should%20show%20meticulous%20attention%20to%20detail%20with%20traditional%20elements%20and%20luxurious%20touches&width=600&height=400&seq=8&orientation=landscape" alt="Wedding Decoration" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Decoration</h3>
+                        <p class="text-gray-700 mb-4">Transform your venue with our exquisite decorations that blend traditional South Indian elements with contemporary design.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Mandap & stage design</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Floral arrangements</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Lighting & draping</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Traditional elements</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Catering Service -->
+                <div id="cater" class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=luxurious%20South%20Indian%20wedding%20feast%20%28sadhya%29%20served%20on%20banana%20leaves%20with%20a%20wide%20variety%20of%20traditional%20dishes%2C%20colorful%20presentation%2C%20and%20elegant%20serving%20staff.%20The%20scene%20should%20show%20an%20elaborate%20buffet%20setup%20with%20traditional%20brass%20vessels%20and%20authentic%20South%20Indian%20cuisine&width=600&height=400&seq=9&orientation=landscape" alt="Wedding Catering" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Catering</h3>
+                        <p class="text-gray-700 mb-4">Delight your guests with authentic South Indian cuisine prepared by our master chefs using the finest ingredients.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Traditional sadhya</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Multi-cuisine options</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Live cooking stations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2 text-secondary">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span class="text-gray-700">Customized menus</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Gallery</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Glimpses of the beautiful celebrations we've crafted for our clients</p>
+                <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://cdn-uploads.huggingface.co/production/uploads/noauth/gGAWdbZdTDM-bTIgutv7p.webp" alt="Traditional Ceremony" class="w-full h-80 object-cover object-top transition-transform duration-500 hover:scale-105">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://readdy.ai/api/search-image?query=luxurious%20South%20Indian%20wedding%20reception%20venue%20with%20elegant%20table%20settings%2C%20floral%20centerpieces%2C%20mood%20lighting%2C%20and%20traditional%20elements.%20The%20scene%20should%20show%20a%20beautifully%20decorated%20hall%20with%20gold%20and%20maroon%20color%20scheme%20and%20traditional%20kolam%20patterns&width=600&height=600&seq=12&orientation=squarish" alt="Reception Venue" class="w-full h-80 object-cover object-top transition-transform duration-500 hover:scale-105">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://readdy.ai/api/search-image?query=South%20Indian%20bride%20getting%20ready%20with%20professional%20makeup%20artists%20and%20stylists.%20The%20bride%20wearing%20traditional%20temple%20jewelry%2C%20flowers%20in%20hair%2C%20and%20gold%20ornaments.%20The%20scene%20should%20show%20the%20detailed%20bridal%20preparation%20with%20multiple%20people%20helping&width=600&height=600&seq=13&orientation=squarish" alt="Bridal Preparation" class="w-full h-80 object-cover object-top transition-transform duration-500 hover:scale-105">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://cdn-uploads.huggingface.co/production/uploads/noauth/vInSJycekfV8el-vNTqr4.webp" alt="Wedding Rituals" class="w-full h-80 object-cover object-top transition-transform duration-500 hover:scale-105">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://readdy.ai/api/search-image?query=elegant%20South%20Indian%20wedding%20food%20presentation%20with%20traditional%20brass%20vessels%2C%20banana%20leaf%20serving%2C%20and%20a%20variety%20of%20colorful%20dishes.%20The%20scene%20should%20show%20an%20elaborate%20feast%20with%20traditional%20South%20Indian%20delicacies%20beautifully%20arranged&width=600&height=600&seq=15&orientation=squarish" alt="Wedding Feast" class="w-full h-80 object-cover object-top transition-transform duration-500 hover:scale-105">
+                </div>
+                <div class="gallery-item overflow-hidden rounded-lg shadow-lg">
+                    <img src="https://cdn-uploads.huggingface.co/production/uploads/noauth/xl7Cq_vpnKRIBwPxlERRa.webp" alt="Couple Portrait" class="w-full h-80 object-cover object-top transition-transform duration-500 hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Client Testimonials</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">What our happy couples say about their experience with us</p>
+                <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-secondary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"Alliance to Honeymoon made our dream wedding a reality. From the stunning decorations to the seamless coordination, everything was perfect. Our families were impressed with how they honored our traditions while adding contemporary touches."</p>
+                    <div class="flex items-center">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20South%20Indian%20woman%20in%20her%20early%2030s%20with%20traditional%20jewelry%2C%20elegant%20hairstyle%2C%20and%20a%20pleasant%20smile.%20The%20image%20should%20be%20a%20clean%20portrait%20with%20neutral%20background%20suitable%20for%20a%20testimonial&width=100&height=100&seq=17&orientation=squarish" alt="Priya Venkatesh" class="w-12 h-12 rounded-full object-cover object-top mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Priya Venkatesh</h4>
+                            <p class="text-gray-600 text-sm">Chennai, April 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-secondary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"We were planning our wedding from abroad, and Alliance to Honeymoon made the entire process stress-free. Their attention to detail and ability to understand our vision resulted in a celebration that exceeded our expectations."</p>
+                    <div class="flex items-center">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20South%20Indian%20couple%20in%20their%20early%2030s%2C%20both%20dressed%20in%20elegant%20traditional%20attire%20with%20pleasant%20smiles.%20The%20image%20should%20be%20a%20clean%20portrait%20with%20neutral%20background%20suitable%20for%20a%20testimonial&width=100&height=100&seq=18&orientation=squarish" alt="Karthik & Divya Raghavan" class="w-12 h-12 rounded-full object-cover object-top mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Karthik & Divya Raghavan</h4>
+                            <p class="text-gray-600 text-sm">Coimbatore, February 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="text-secondary">
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                            <i class="ri-star-fill"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"The team at Alliance to Honeymoon are true professionals. Their knowledge of South Indian wedding traditions combined with their creative ideas made our wedding truly special. The photography and videography captured every precious moment beautifully."</p>
+                    <div class="flex items-center">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20South%20Indian%20man%20in%20his%20mid-30s%20wearing%20a%20traditional%20kurta%20with%20a%20pleasant%20smile.%20The%20image%20should%20be%20a%20clean%20portrait%20with%20neutral%20background%20suitable%20for%20a%20testimonial&width=100&height=100&seq=19&orientation=squarish" alt="Arun Krishnan" class="w-12 h-12 rounded-full object-cover object-top mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Arun Krishnan</h4>
+                            <p class="text-gray-600 text-sm">Bangalore, March 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Let's start planning your perfect wedding celebration</p>
+                <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary" required>
+                        </div>
+                        <div>
+                            <label for="wedding-date" class="block text-sm font-medium text-gray-700 mb-1">Wedding Date</label>
+                            <input type="date" id="weddingdate" name="wedding-date" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" onclick="sendMail()" class="w-full bg-primary text-white py-3 !rounded-button hover:bg-opacity-90 transition-colors duration-300 whitespace-nowrap">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 mt-1">
+                                    <i class="ri-map-pin-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Visit Us</h4>
+                                    <p class="text-gray-700">No.3, Venkataraman Street, Nagappa Nagar, chromepet, Chennai 600044, Tamil Nadu, India</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 mt-1">
+                                    <i class="ri-phone-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Call Us</h4>
+                                    <p class="text-gray-700">+91 94440 92899</p>
+                                    <p class="text-gray-700">+91 78069 06062</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 mt-1">
+                                    <i class="ri-mail-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Email Us</h4>
+                                    <p class="text-gray-700">olikutty@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4 mt-1">
+                                    <i class="ri-time-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Office Hours</h4>
+                                    <p class="text-gray-700">Monday - Saturday: 10:00 AM - 7:00 PM</p>
+                                    <p class="text-gray-700">Sunday: By appointment only</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rounded-lg overflow-hidden shadow-lg h-64">
+                        <a href="https://maps.app.goo.gl/5CEqfjYoRH8ZXJQ66?g_st=aw">
+                            <img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Location Map" class="w-full h-full object-cover">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Plan Your Dream Wedding?</h2>
+            <p class="text-xl text-white mb-8 max-w-3xl mx-auto">Let us help you create a celebration that honors your traditions and tells your unique love story</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#contact" class="bg-white text-primary px-8 py-3 !rounded-button hover:bg-gray-100 transition-colors duration-300 whitespace-nowrap">Book a Consultation</a>
+                <a href="#services" class="bg-transparent text-white border-2 border-white px-8 py-3 !rounded-button hover:bg-white hover:bg-opacity-10 transition-colors duration-300 whitespace-nowrap">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section pt-16 pb-8 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="#" class="text-3xl font-['Pacifico'] text-white mb-6 inline-block">Alliance to Honeymoon</a>
+                    <p class="text-gray-300 mb-6">Creating timeless celebrations that honor tradition while embracing your unique love story.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-white transition-colors duration-300">Services</a></li>
+                        <li><a href="#gallery" class="text-gray-300 hover:text-white transition-colors duration-300">Gallery</a></li>
+                        <li><a href="#testimonials" class="text-gray-300 hover:text-white transition-colors duration-300">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Our Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#photo" class="text-gray-300 hover:text-white transition-colors duration-300">Photography</a></li>
+                        <li><a href="#video" class="text-gray-300 hover:text-white transition-colors duration-300">Videography</a></li>
+                        <li><a href="#djset" class="text-gray-300 hover:text-white transition-colors duration-300">DJ Setup</a></li>
+                        <li><a href="#decor" class="text-gray-300 hover:text-white transition-colors duration-300">Decoration</a></li>
+                        <li><a href="#cater" class="text-gray-300 hover:text-white transition-colors duration-300">Catering</a></li>
+                        <li><a href="#matri" class="text-gray-300 hover:text-white transition-colors duration-300">Matrimony</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Newsletter</h3>
+                    <p class="text-gray-300 mb-4">Subscribe to receive wedding planning tips and exclusive offers.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Alliance to Honeymoon. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuButton = document.querySelector('.ri-menu-line').parentElement.parentElement;
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'mobile-menu hidden fixed inset-0 bg-white z-50 p-4';
+            mobileMenu.innerHTML = `
+                <div class="flex justify-between items-center mb-8">
+                    <a href="#" class="text-3xl font-['Pacifico'] text-primary">Alliance to Honeymoon</a>
+                    <button class="close-menu text-gray-800 hover:text-primary focus:outline-none">
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            <i class="ri-close-line ri-2x"></i>
+                        </div>
+                    </button>
+                </div>
+                <div class="flex flex-col space-y-4">
+                    <a href="#" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300 py-2">Home</a>
+                    <a href="#about" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300 py-2">About</a>
+                    <a href="#services" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300 py-2">Services</a>
+                    <a href="#gallery" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300 py-2">Gallery</a>
+                    <a href="#testimonials" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300 py-2">Testimonials</a>
+                    <a href="#contact" class="text-gray-800 hover:text-primary font-medium transition-colors duration-300 py-2">Contact</a>
+                    <a href="#" class="bg-primary text-white px-6 py-3 !rounded-button hover:bg-opacity-90 transition-colors duration-300 text-center mt-4 whitespace-nowrap">Book Consultation</a>
+                </div>
+            `;
+            document.body.appendChild(mobileMenu);
+
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+
+            document.querySelector('.close-menu').addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close mobile menu when clicking on links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Form validation
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    let isValid = true;
+                    const requiredFields = contactForm.querySelectorAll('[required]');
+                    
+                    requiredFields.forEach(field => {
+                        if (!field.value.trim()) {
+                            isValid = false;
+                            field.classList.add('border-red-500');
+                            
+                            // Add error message if it doesn't exist
+                            let errorMsg = field.parentElement.querySelector('.error-message');
+                            if (!errorMsg) {
+                                errorMsg = document.createElement('p');
+                                errorMsg.className = 'error-message text-red-500 text-sm mt-1';
+                                errorMsg.textContent = 'This field is required';
+                                field.parentElement.appendChild(errorMsg);
+                            }
+                        } else {
+                            field.classList.remove('border-red-500');
+                            const errorMsg = field.parentElement.querySelector('.error-message');
+                            if (errorMsg) {
+                                errorMsg.remove();
+                            }
+                            
+                            // Validate email format
+                            if (field.type === 'email') {
+                                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                if (!emailRegex.test(field.value)) {
+                                    isValid = false;
+                                    field.classList.add('border-red-500');
+                                    
+                                    let errorMsg = field.parentElement.querySelector('.error-message');
+                                    if (!errorMsg) {
+                                        errorMsg = document.createElement('p');
+                                        errorMsg.className = 'error-message text-red-500 text-sm mt-1';
+                                        errorMsg.textContent = 'Please enter a valid email address';
+                                        field.parentElement.appendChild(errorMsg);
+                                    } else {
+                                        errorMsg.textContent = 'Please enter a valid email address';
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    
+                    if (isValid) {
+                        // Form is valid, you would normally submit it here
+                        alert('Thank you for your message! We will get back to you soon.');
+                        contactForm.reset();
+                    }
+                });
+                
+                // Clear error styling on input
+                const formInputs = contactForm.querySelectorAll('input, textarea');
+                formInputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        this.classList.remove('border-red-500');
+                        const errorMsg = this.parentElement.querySelector('.error-message');
+                        if (errorMsg) {
+                            errorMsg.remove();
+                        }
+                    });
+                });
+            }
+            // Custom checkbox functionality
+            document.querySelectorAll('.custom-checkbox input').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Already handled by CSS
+                });
+            });
+
+            // Custom radio functionality
+            document.querySelectorAll('.custom-radio input').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Already handled by CSS
+                });
+            });
+        });
+    </script>
+</body>
+</html>
